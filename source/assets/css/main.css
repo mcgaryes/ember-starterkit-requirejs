@@ -1,0 +1,16 @@
+html, body {
+  margin: 0;
+  background: #f2ece9; }
+
+#header {
+  height: 44px;
+  background: #ed573e; }
+
+#content {
+  min-height: 200px;
+  background: #faf4f1; }
+
+#footer {
+  height: 60px;
+  background: #f2ece9;
+  border-top: 1px solid #e5dbd6; }

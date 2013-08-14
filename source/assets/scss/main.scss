@@ -1,0 +1,29 @@
+$background:#FAF4F1; 
+$middleground:#F2ECE9;
+$foreground:#e5dbd6;
+$orange:#ED573E;
+
+$headerHeight:44px;
+$contentHeight:200px;
+$footerHeight:60px;
+
+html, body {
+    margin: 0;
+    background: $middleground; 
+}
+
+#header {
+	height: $headerHeight;
+	background: $orange;
+}
+
+#content {
+	min-height: $contentHeight;
+	background: $background;
+}
+
+#footer {
+	height: $footerHeight;
+	background: $middleground;
+	border-top:1px solid $foreground;
+}

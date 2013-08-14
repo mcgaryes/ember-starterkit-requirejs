@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+	<head>
+
+		<% css.forEach(function(style){ %>
+			<link rel="stylesheet" type="text/css" href="<%= style %>">
+		<% }) %>
+
+		<!-- RequireJS Library -->
+		<script type="text/javascript" src="../source/assets/js/require.js"></script>
+
+		<!-- RequireJS Error -->
+		<script>
+			require.onError = function(error) {
+				var message = error.requireType + ': ';
+				if (error.requireType === 'scripterror' || error.requireType === 'notloaded' && error.requireModules) {
+					message += 'Illegal path or script error: ' + '[\'' + error.requireModules.join("', '") + '\']';
+				} else {
+					message += error.message;
+				}
+
+				throw Error(message);
+			};
+		</script>
+
+		<!-- Jasmine includes -->
+		<% with (scripts) { %>
+			<% [].concat(jasmine, vendor, helpers).forEach(function(script){ %>
+				<script src="<%= script %>"></script>
+			<% }) %>
+		<% }; %>
+
+		<!-- RequireJS Configuration -->
+		<script type="text/javascript">
+	        require.config({
+	        	baseUrl: "../source",
+				paths: {
+
+					// libraries
+					ember: "assets/js/ember",
+					jquery: "assets/js/jquery",
+					handlebars: "assets/js/handlebars",
+
+					// require plugins
+					text:"assets/js/text",
+					domReady:"assets/js/dom-ready",
+
+					// app directories
+					controllers:"app/controller",
+					models:"app/model",
+					views:"app/view/views",
+					components:"app/view/components",
+					screens:"app/view/screens"
+
+				},
+				shim: {
+					"jquery": {
+						exports: "$"
+					},
+					"ember": {
+						exports: "Ember",
+						deps: ["jquery","handlebars"],
+					},
+					"handlebars": {
+						exports: "handlebars"
+					}
+				}
+	        });
+	 	</script>
+
+	 	 <!-- RequireJS Specs -->
+	 	<script type="text/javascript">
+	        require([
+				<% scripts.src.forEach(function(script, i){ %>
+          			<% script = script.replace(/\\/g, '/') // replace all backward slashes to forward slash %>
+          			'<%= script %>' <%= i < scripts.src.length-1 ? ',' : '' %>
+        		<% }) %>
+			],function() {
+				require(['<%= [].concat(scripts.specs,scripts.reporters).join("','") %>'], function(){
+					require(['<%= scripts.start.join("','") %>'], function(){
+						// good to go! Our tests should already be running.
+					});
+		        });
+			});
+		</script>
+
+	</head>
+
+	<body></body>
+
+</html>

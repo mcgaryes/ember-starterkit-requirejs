@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+  
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0" />
+    <link rel="stylesheet" href="/assets/css/main.css">
+  
+  </head>
+  
+  <body>
+  
+    <!-- Handlebars Templates -->
+    <div>
+
+        <!-- Application Template -->
+        <script type="text/x-handlebars" data-template-name="application">
+            <div id="header"></div>
+            <div id="content">{{outlet}}</div>
+            <div id="footer"></div>
+      	</script>
+
+        <!-- Index Template -->
+      	<script type="text/x-handlebars" data-template-name="index"></script>
+
+    </div>
+
+    <!-- RequireJS -->
+    <script data-main="/app/config" src="/assets/js/require.js"></script>
+
+  </body>
+
+</html>
