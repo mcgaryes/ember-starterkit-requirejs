@@ -11,22 +11,12 @@
   
   <body>
   
-    <!-- Handlebars Templates -->
-    <div>
-
-        <!-- Application Template -->
-        <script type="text/x-handlebars" data-template-name="application">
-            <div id="header"></div>
-            <div id="content">{{outlet}}</div>
-            <div id="footer"></div>
-      	</script>
-
-        <!-- Index Template -->
-      	<script type="text/x-handlebars" data-template-name="index"></script>
-
-    </div>
-
-    <!-- RequireJS -->
+    <script type="text/x-handlebars" data-template-name="application">
+        <div id="header"></div>
+        <div id="content">{{outlet}}</div>
+        <div id="footer"></div>
+    </script>
+    
     <script data-main="/app/config" src="/assets/js/require.js"></script>
 
   </body>

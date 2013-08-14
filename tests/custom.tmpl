@@ -37,20 +37,12 @@
 				paths: {
 
 					// libraries
-					ember: "assets/js/ember",
-					jquery: "assets/js/jquery",
-					handlebars: "assets/js/handlebars",
+					ember: "../assets/js/ember-1.0.0-rc.7",
+					jquery: "../assets/js/jquery-1.9.1",
+					handlebars: "../assets/js/handlebars-1.0.0",
 
 					// require plugins
-					text:"assets/js/text",
-					domReady:"assets/js/dom-ready",
-
-					// app directories
-					controllers:"app/controller",
-					models:"app/model",
-					views:"app/view/views",
-					components:"app/view/components",
-					screens:"app/view/screens"
+					text: "../assets/js/text",
 
 				},
 				shim: {
@@ -59,7 +51,7 @@
 					},
 					"ember": {
 						exports: "Ember",
-						deps: ["jquery","handlebars"],
+						deps: ["jquery", "handlebars"],
 					},
 					"handlebars": {
 						exports: "handlebars"

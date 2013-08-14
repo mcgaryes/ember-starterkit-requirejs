@@ -1,6 +1,6 @@
 {
-  "name": "ember-starterkit-server",
-  "description": "ember-starterkit-server",
+  "name": "server",
+  "description": "server",
   "version": "1.0.0",
   "private": true,
   "dependencies": {

@@ -10,6 +10,14 @@ $footerHeight:60px;
 html, body {
     margin: 0;
     background: $middleground; 
+    padding:0;
+    margin:0;
+}
+
+p {
+	padding:0;
+    margin:0;
+	font-family:sans-serif;
 }
 
 #header {
@@ -18,6 +26,7 @@ html, body {
 }
 
 #content {
+	padding:20px;
 	min-height: $contentHeight;
 	background: $background;
 }

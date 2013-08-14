@@ -2,8 +2,8 @@ module.exports = function(grunt) {
 
     'use strict';
 
-    var NAME = 'Ember Starter-Kit';
-    var DESCRIPTION = 'Ember Starter-Kit';
+    var NAME = 'Application';
+    var DESCRIPTION = 'Ember application.';
     var URL = 'https://www.yourdomainhere.com/';
     var VERSION = '0.1.0';
     var BANNER = '/**\n * ' + NAME + ' v' + VERSION + '\n * ' + DESCRIPTION + '\n * ' + URL + '\n */\n';
@@ -16,65 +16,22 @@ module.exports = function(grunt) {
     grunt.file.expand({
         cwd: srcpath
     }, '**/*.js').forEach(function(relpath) {
-        var excludes = ["ember.js", "jquery.js", "handlebars.js"];
-        var shouldAdd = true;
-        for (var i = 0; i < excludes.length; i++) {
-            if (relpath === excludes[i]) {
-                shouldAdd = false;
-            }
-        }
-        if (shouldAdd) {
-            uglify[path.join(destpath, relpath)] = path.join(srcpath, relpath);
-        }
+        uglify[path.join(destpath, relpath)] = path.join(srcpath, relpath);
     });
 
     // config
     grunt.initConfig({
         uglify: {
             options: {},
-            dist: {
+            all: {
                 files: uglify
             }
         },
         jasmine: {
-            tests: {
+            all: {
                 options: {
                     specs: "../tests/specs/*.js",
                     template: "../tests/custom.tmpl"
-                }
-            },
-            coverage: {
-                src: ['../source/app/controller/*.js', '../source/app/model/*.js'],
-                options: {
-                    specs: '../tests/specs/*.js',
-                    template: require('grunt-template-jasmine-istanbul'),
-                    templateOptions: {
-                        coverage: '../tests/bin/coverage/coverage.json',
-                        report: '../tests/bin/coverage',
-                        thresholds: {
-                            lines: 10,
-                            statements: 10,
-                            branches: 10,
-                            functions: 10
-                        }
-                    }
-                }
-            }
-        },
-        plato: {
-            all: {
-                options: {
-                    jshint: grunt.file.readJSON('../.jshintrc'),
-                    exclude: /\.min\.js$/,
-                    complexity: {
-                        logicalor: true,
-                        switchcase: true,
-                        forin: true,
-                        trycatch: true
-                    }
-                },
-                files: {
-                    '../tests/bin/reports': ['../source/app/**/*.js']
                 }
             }
         },
@@ -141,7 +98,7 @@ module.exports = function(grunt) {
             }
         },
         watch: {
-            all: {
+            sass: {
                 files: ['../source/assets/scss/*.scss'],
                 tasks: ['sass'],
                 options: {
@@ -154,17 +111,15 @@ module.exports = function(grunt) {
     // load npm tasks
     grunt.loadNpmTasks('grunt-contrib-yuidoc');
     grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-jasmine');
     grunt.loadNpmTasks('grunt-contrib-requirejs');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-sass');
-    grunt.loadNpmTasks('grunt-plato');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
+
 
     // tasks
-    grunt.registerTask("test", ["jshint", "jasmine:tests" /*, "jasmine:coverage"*/ , "plato"]);
-    grunt.registerTask("development", ["test", "sass"]);
-    grunt.registerTask("release", ["development", "requirejs", "uglify", "copy:code", "copy:version", "yuidoc"]);
+    grunt.registerTask("default", ["jshint", "jasmine", "sass", "requirejs", "copy:code", "uglify", "copy:version", "yuidoc"]);
 
 };

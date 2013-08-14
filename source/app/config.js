@@ -1,21 +1,19 @@
-'use strict';
+/**
+ * RequireJS configuration file.
+ * @module config
+ */
 require.config({
 	deps: ["main"],
 	paths: {
 
 		// libraries
-		ember: "../assets/js/ember",
-		emberData: "../assets/js/ember-data",
-		jquery: "../assets/js/jquery",
-		handlebars: "../assets/js/handlebars",
+		ember: "../assets/js/ember-1.0.0-rc.7",
+		jquery: "../assets/js/jquery-1.9.1",
+		handlebars: "../assets/js/handlebars-1.0.0",
 
 		// require plugins
 		text: "../assets/js/text",
-
-		// view directories
-		views: "view/views",
-		components: "view/components",
-		screens: "view/screens"
+		domready: "../assets/js/dom-ready",
 
 	},
 	shim: {
@@ -25,10 +23,6 @@ require.config({
 		"ember": {
 			exports: "Ember",
 			deps: ["jquery", "handlebars"],
-		},
-		"emberData": {
-			exports: "DS",
-			deps: ["ember"],
 		},
 		"handlebars": {
 			exports: "handlebars"
