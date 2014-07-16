@@ -15,9 +15,7 @@ define([
 	});
 
 	Application.IndexView = Ember.View.extend({
-		defaultTemplate: null,
-		template: Ember.Handlebars.compile(IndexTemplate),
-		templateName: "index"
+		defaultTemplate: Ember.Handlebars.compile(IndexTemplate),
 	});
 
 });
